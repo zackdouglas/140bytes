@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>140 bytes javascript</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+		<style>
+      html {
+        font: 22px/1.2 "PT Sans Narrow", sans-serif;
+      }
+      body {
+        max-width: 30em;
+        margin: 0 auto 2em;
+      }
+      h1 {
+        font-size: 42px;
+        font-weight: normal;
+        color: gray;
+        text-decoration: uppercase;
+      }
+      img {
+        display: inline-block;
+        border-radius: 3px;
+      }
+      a {
+        display: table;
+        width: 100%;
+        text-decoration: none;
+        color: #444;
+        margin-bottom: .25em;
+      }
+      a:hover {
+        background: lightblue;
+      }
+      img {
+        float: left;
+        height: 1.2em;
+        margin-right: .5em;
+      }
+      #loader {
+        color: gray;
+        background: #eee;
+        padding: 1em;
+        font-size: 100%;
+        margin-top: 1em;
+      }
+      #loader:after {
+        content: 'Loading...'
+      }
+      </style>
+	</head>
+  <body>
+    <h1>140 bytes javascript</h1>
+    <main id="list"></main>
+    <div id="loader"></div>
+
+    <script>
+      fetch('data.json', {credentials: 'same-origin'})
+        .then((r) => r.json())
+        .then((gists) => {
+          gists.forEach(gist => {
+            const item = document.createElement('a')
+            const img = document.createElement('img')
+            item.textContent = (gist.description || gist.id)
+            item.title = gist.user
+            item.href = gist.url
+            item.target = '_blank'
+            img.src = gist.avatar
+            item.insertBefore(img, item.firstChild)
+            list.appendChild(item)
+          })
+          loader.style.display = 'none'
+        })
+    </script>
+	</body>
+</html>
