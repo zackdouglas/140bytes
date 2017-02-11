@@ -33,7 +33,7 @@ function load (page) {
         }))
         load(page + 1)
       } else {
-        fs.writeFileSync('./data.json', JSON.stringify(gists))
+        fs.writeFileSync('./data.json', JSON.stringify(gists, null, 2))
       }
     }
   })
