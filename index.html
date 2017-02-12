@@ -7,14 +7,20 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
 		<style>
       html {
-        font: 22px/1.2 "PT Sans Narrow", sans-serif;
+        font: 16px/1.2 "PT Sans Narrow", sans-serif;
+      }
+      @media (min-width: 700px) {
+        html {
+          font-size: 22px;
+        }
       }
       body {
         max-width: 30em;
         margin: 0 auto 2em;
+        padding: 0 1em;
       }
       h1 {
-        font-size: 42px;
+        font-size: 2rem;
         font-weight: normal;
         color: gray;
         text-decoration: uppercase;
@@ -59,7 +65,7 @@
       fetch('data.json', {credentials: 'same-origin'})
         .then((r) => r.json())
         .then((gists) => {
-          gists.forEach(gist => {
+          gists.reverse().forEach(gist => {
             const item = document.createElement('a')
             const img = document.createElement('img')
             item.textContent = (gist.description || gist.id)
